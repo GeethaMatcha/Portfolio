@@ -3,84 +3,108 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
-<title>Matcha Geetha | React Developer</title>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet"/>
+<title>Matcha Geetha | Full Stack Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
-/* ── RESET & TOKENS ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; font-size: 16px; }
 :root {
-  --bg: #08090d;
-  --surface: #0f1017;
-  --card: #13141c;
-  --border: #1c1d28;
-  --accent: #3b82f6;
-  --accent-glow: rgba(59,130,246,0.18);
-  --green: #22c55e;
-  --purple: #a855f7;
-  --text: #f1f1f5;
-  --sub: #9394a5;
-  --muted: #5a5b6e;
-  --radius: 12px;
-  --nav-h: 64px;
+  --bg: #050609;
+  --surface: #0a0b10;
+  --card: #0e0f18;
+  --card2: #12132070;
+  --border: #1a1b2e;
+  --border2: #22243a;
+  --accent: #4f8ef7;
+  --accent2: #6366f1;
+  --green: #10d9a0;
+  --orange: #f97316;
+  --pink: #ec4899;
+  --gold: #f59e0b;
+  --text: #eeeef5;
+  --sub: #8889a8;
+  --muted: #4a4b62;
+  --radius: 14px;
+  --nav-h: 66px;
+  --glow: rgba(79,142,247,0.15);
 }
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: 'Outfit', sans-serif;
   line-height: 1.6;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
+/* ── NOISE TEXTURE ── */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
 /* ── BACKGROUND ── */
 .bg-grid {
   position: fixed; inset: 0; z-index: 0; pointer-events: none;
-  background-image: linear-gradient(rgba(59,130,246,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(59,130,246,0.04) 1px, transparent 1px);
-  background-size: 48px 48px;
+  background-image:
+    linear-gradient(rgba(79,142,247,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(79,142,247,0.03) 1px, transparent 1px);
+  background-size: 52px 52px;
 }
 .bg-orb {
-  position: fixed; border-radius: 50%; filter: blur(100px);
-  opacity: 0.12; pointer-events: none; z-index: 0;
+  position: fixed; border-radius: 50%; filter: blur(110px);
+  opacity: 0.1; pointer-events: none; z-index: 0;
 }
-.orb1 { width: 600px; height: 600px; background: var(--purple); top: -200px; right: -150px; animation: orb1 12s ease-in-out infinite; }
-.orb2 { width: 500px; height: 500px; background: var(--accent); bottom: 5%; left: -150px; animation: orb2 15s ease-in-out infinite; }
-@keyframes orb1 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(-40px,50px) scale(1.05)} }
-@keyframes orb2 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(50px,-40px) scale(1.05)} }
+.orb1 { width: 700px; height: 700px; background: #6366f1; top: -280px; right: -200px; animation: orb1 14s ease-in-out infinite; }
+.orb2 { width: 550px; height: 550px; background: #4f8ef7; bottom: 0; left: -180px; animation: orb2 18s ease-in-out infinite; }
+.orb3 { width: 350px; height: 350px; background: #10d9a0; top: 45%; left: 35%; animation: orb2 20s ease-in-out infinite reverse; opacity: 0.06; }
+@keyframes orb1 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(-50px,60px) scale(1.06)} }
+@keyframes orb2 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(60px,-50px) scale(1.06)} }
 
 /* ── NAV ── */
 nav {
   position: fixed; top: 0; left: 0; right: 0; height: var(--nav-h); z-index: 200;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 0 5%; background: rgba(8,9,13,0.9); backdrop-filter: blur(24px);
+  padding: 0 5%; background: rgba(5,6,9,0.88); backdrop-filter: blur(28px);
   border-bottom: 1px solid var(--border);
 }
 .nav-logo {
-  font-size: 1.1rem; font-weight: 800; letter-spacing: -0.5px;
-  background: linear-gradient(135deg, var(--accent), var(--purple));
+  font-size: 1.15rem; font-weight: 800; letter-spacing: -0.5px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2), var(--green));
   -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-size: 200%;
+  animation: shimmer 4s linear infinite;
 }
-.nav-links { display: flex; gap: 1.8rem; list-style: none; }
+@keyframes shimmer { 0%{background-position:0%} 100%{background-position:200%} }
+.nav-links { display: flex; gap: 1.8rem; list-style: none; align-items: center; }
 .nav-links a {
-  font-family: 'Fira Code', monospace; font-size: 0.75rem;
-  color: var(--muted); text-decoration: none; transition: color 0.25s;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.72rem;
+  color: var(--muted); text-decoration: none; transition: color 0.2s; letter-spacing: 0.04em;
 }
 .nav-links a:hover { color: var(--accent); }
+.nav-cta {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+  background: var(--accent); color: #fff; padding: 0.45rem 1rem; border-radius: 6px;
+  text-decoration: none; transition: all 0.2s;
+}
+.nav-cta:hover { background: #3a7de8; transform: translateY(-1px); }
 .nav-mobile-toggle {
   display: none; background: none; border: 1px solid var(--border);
   border-radius: 8px; padding: 0.4rem 0.6rem; cursor: pointer; color: var(--sub);
 }
 .mobile-menu {
   display: none; position: fixed; top: var(--nav-h); left: 0; right: 0;
-  background: rgba(8,9,13,0.98); backdrop-filter: blur(24px);
+  background: rgba(5,6,9,0.98); backdrop-filter: blur(28px);
   border-bottom: 1px solid var(--border); z-index: 199; padding: 1.2rem 5%;
 }
 .mobile-menu.open { display: block; }
 .mobile-menu ul { list-style: none; display: flex; flex-direction: column; gap: 0.2rem; }
 .mobile-menu a {
-  display: block; padding: 0.75rem 0; font-family: 'Fira Code', monospace;
-  font-size: 0.9rem; color: var(--sub); text-decoration: none; border-bottom: 1px solid var(--border);
+  display: block; padding: 0.75rem 0; font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem; color: var(--sub); text-decoration: none; border-bottom: 1px solid var(--border);
   transition: color 0.2s;
 }
 .mobile-menu a:hover { color: var(--accent); }
@@ -88,277 +112,381 @@ nav {
 /* ── SECTION BASE ── */
 section { position: relative; z-index: 1; }
 .container { max-width: 1100px; margin: 0 auto; padding: 0 5%; }
-.sec-pad { padding: 5rem 0; }
+.sec-pad { padding: 5.5rem 0; }
 .sec-tag {
-  font-family: 'Fira Code', monospace; font-size: 0.7rem; letter-spacing: 0.12em;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; letter-spacing: 0.14em;
   color: var(--accent); text-transform: uppercase; margin-bottom: 0.6rem;
   display: flex; align-items: center; gap: 0.5rem;
 }
 .sec-tag::before { content: '//'; color: var(--muted); }
 .sec-title {
-  font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 800;
-  letter-spacing: -0.5px; line-height: 1.2; margin-bottom: 1rem; color: var(--text);
+  font-size: clamp(1.7rem, 3vw, 2.5rem); font-weight: 700;
+  letter-spacing: -1px; line-height: 1.1; margin-bottom: 0.9rem; color: var(--text);
 }
-.sec-sub { color: var(--sub); font-size: 0.95rem; line-height: 1.7; max-width: 580px; }
+.sec-sub { color: var(--sub); font-size: 0.93rem; line-height: 1.75; max-width: 560px; }
 
 /* ── HERO ── */
 .hero {
   min-height: 100vh; display: flex; align-items: center;
-  padding: calc(var(--nav-h) + 3rem) 5% 4rem;
+  padding: calc(var(--nav-h) + 3.5rem) 5% 4rem;
 }
-.hero-inner { max-width: 780px; }
+.hero-inner { max-width: 820px; }
 
 .hero-badge {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.25);
+  display: inline-flex; align-items: center; gap: 0.55rem;
+  background: rgba(16,217,160,0.07); border: 1px solid rgba(16,217,160,0.22);
   border-radius: 999px; padding: 0.3rem 1rem 0.3rem 0.6rem;
-  font-family: 'Fira Code', monospace; font-size: 0.72rem; color: var(--green);
+  font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--green);
   margin-bottom: 1.8rem; animation: fadeUp 0.5s ease both;
 }
 .badge-dot {
   width: 7px; height: 7px; background: var(--green); border-radius: 50%;
   animation: pulse 2s ease-in-out infinite; flex-shrink: 0;
 }
-@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.85)} }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.35;transform:scale(0.8)} }
 
 .hero-name {
-  font-size: clamp(2rem, 5.5vw, 4rem); font-weight: 800;
-  letter-spacing: -1.5px; line-height: 1.1; color: var(--text);
-  margin-bottom: 0.4rem; animation: fadeUp 0.5s 0.1s ease both;
+  font-size: clamp(2.2rem, 6vw, 4.4rem); font-weight: 900;
+  letter-spacing: -3px; line-height: 1.0; color: var(--text);
+  margin-bottom: 0.5rem; animation: fadeUp 0.5s 0.1s ease both;
 }
 .hero-role {
-  font-size: clamp(1.1rem, 3vw, 1.9rem); font-weight: 700;
-  letter-spacing: -0.5px; line-height: 1.2; margin-bottom: 1.4rem;
-  background: linear-gradient(90deg, var(--accent), var(--purple));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  font-size: clamp(1.05rem, 2.8vw, 1.75rem); font-weight: 700;
+  letter-spacing: -0.3px; line-height: 1.3; margin-bottom: 0.6rem;
   animation: fadeUp 0.5s 0.15s ease both;
 }
+.role-stack {
+  display: inline-flex; align-items: center; gap: 0.7rem; flex-wrap: wrap;
+}
+.role-chip {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  font-size: inherit; font-weight: 700;
+}
+.role-chip.react { color: #61dafb; }
+.role-chip.spring { color: #6db33f; }
+.role-dot { color: var(--muted); font-size: 0.6em; }
+
 .hero-desc {
-  font-size: clamp(0.9rem, 2vw, 1rem); color: var(--sub); line-height: 1.8;
-  max-width: 560px; margin-bottom: 2rem; animation: fadeUp 0.5s 0.2s ease both;
+  font-size: clamp(0.88rem, 1.8vw, 0.97rem); color: var(--sub); line-height: 1.85;
+  max-width: 580px; margin-bottom: 2rem; animation: fadeUp 0.5s 0.2s ease both;
 }
 .hero-actions {
   display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 3rem;
   animation: fadeUp 0.5s 0.25s ease both;
 }
+
+/* Stats — enhanced for full-stack */
 .hero-stats {
-  display: grid; grid-template-columns: repeat(4, 1fr);
+  display: grid; grid-template-columns: repeat(5, 1fr);
   gap: 1px; background: var(--border); border: 1px solid var(--border);
   border-radius: var(--radius); overflow: hidden;
   animation: fadeUp 0.5s 0.3s ease both;
 }
 .stat-item {
-  background: var(--card); padding: 1.2rem 1rem; text-align: center;
+  background: var(--card); padding: 1.2rem 0.8rem; text-align: center;
 }
 .stat-num {
-  font-size: clamp(1.4rem, 3vw, 1.8rem); font-weight: 800; color: var(--accent);
-  line-height: 1; display: block;
+  font-size: clamp(1.3rem, 2.8vw, 1.75rem); font-weight: 800; color: var(--accent);
+  line-height: 1; display: block; font-family: 'JetBrains Mono', monospace;
 }
 .stat-lbl {
-  font-family: 'Fira Code', monospace; font-size: 0.62rem; color: var(--muted);
+  font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; color: var(--muted);
   letter-spacing: 0.06em; margin-top: 0.3rem; display: block;
 }
-@keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeUp { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
 
 /* ── BUTTONS ── */
 .btn {
   display: inline-flex; align-items: center; gap: 0.45rem;
-  font-family: 'Fira Code', monospace; font-size: 0.78rem; font-weight: 500;
-  padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer;
-  text-decoration: none; transition: all 0.25s; border: none; white-space: nowrap;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.76rem; font-weight: 500;
+  padding: 0.78rem 1.5rem; border-radius: 8px; cursor: pointer;
+  text-decoration: none; transition: all 0.25s; border: none; white-space: nowrap; letter-spacing: 0.02em;
 }
 .btn-blue { background: var(--accent); color: #fff; }
-.btn-blue:hover { background: #2563eb; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(59,130,246,0.35); }
-.btn-dark { background: #21262d; color: #e6edf3; border: 1px solid #30363d; }
-.btn-dark:hover { background: #30363d; transform: translateY(-2px); }
-.btn-outline { background: transparent; color: var(--sub); border: 1px solid var(--border); }
+.btn-blue:hover { background: #3a7de8; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(79,142,247,0.4); }
+.btn-dark { background: #16171f; color: #e6edf3; border: 1px solid #2a2b40; }
+.btn-dark:hover { background: #1e1f2e; transform: translateY(-2px); }
+.btn-outline { background: transparent; color: var(--sub); border: 1px solid var(--border2); }
 .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+.btn-green { background: rgba(16,217,160,0.1); color: var(--green); border: 1px solid rgba(16,217,160,0.25); }
+.btn-green:hover { background: rgba(16,217,160,0.18); transform: translateY(-2px); }
+.btn-purple { background: linear-gradient(135deg, rgba(99,102,241,0.18), rgba(168,85,247,0.14)); color: #c4b5fd; border: 1px solid rgba(139,92,246,0.35); }
+.btn-purple:hover { background: linear-gradient(135deg, rgba(99,102,241,0.32), rgba(168,85,247,0.26)); border-color: rgba(139,92,246,0.65); color: #e9d5ff; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(139,92,246,0.25); }
 
 /* ── DIVIDER ── */
 .divider { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 
 /* ── ABOUT ── */
 .about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3rem; align-items: start; margin-top: 2.5rem; }
-.about-text p { color: var(--sub); line-height: 1.8; font-size: 0.95rem; margin-bottom: 0.9rem; }
-.info-list { display: flex; flex-direction: column; gap: 0.6rem; }
+.about-text p { color: var(--sub); line-height: 1.85; font-size: 0.92rem; margin-bottom: 1rem; }
+.about-highlight { color: var(--accent); font-weight: 600; }
+.info-list { display: flex; flex-direction: column; gap: 0.55rem; }
 .info-item {
   display: flex; justify-content: space-between; align-items: center;
-  padding: 0.75rem 1rem; background: var(--card); border: 1px solid var(--border);
-  border-radius: 8px; gap: 1rem;
+  padding: 0.7rem 1rem; background: var(--card); border: 1px solid var(--border);
+  border-radius: 8px; gap: 1rem; transition: border-color 0.2s;
 }
-.info-key { font-family: 'Fira Code', monospace; font-size: 0.72rem; color: var(--muted); white-space: nowrap; }
-.info-val { font-size: 0.82rem; color: var(--accent); font-weight: 600; text-align: right; }
+.info-item:hover { border-color: var(--border2); }
+.info-key { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--muted); white-space: nowrap; }
+.info-val { font-size: 0.8rem; color: var(--accent); font-weight: 600; text-align: right; }
 .info-val a { color: var(--accent); text-decoration: none; }
 .info-val a:hover { text-decoration: underline; }
 
-/* ── SKILLS ── */
-.skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2.5rem; }
+/* ── SKILLS — FULL STACK REDESIGN ── */
+.skills-header { display: flex; align-items: center; gap: 2rem; margin-top: 2rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+.stack-label {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; letter-spacing: 0.1em;
+  padding: 0.25rem 0.8rem; border-radius: 4px; font-weight: 500;
+}
+.stack-fe { background: rgba(97,218,251,0.1); color: #61dafb; border: 1px solid rgba(97,218,251,0.2); }
+.stack-be { background: rgba(109,179,63,0.1); color: #6db33f; border: 1px solid rgba(109,179,63,0.2); }
+.stack-db { background: rgba(249,115,22,0.1); color: var(--orange); border: 1px solid rgba(249,115,22,0.2); }
+.stack-tools { background: rgba(168,85,247,0.1); color: #c084fc; border: 1px solid rgba(168,85,247,0.2); }
+
+.skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
 .skill-card {
   background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
-  padding: 1.4rem; transition: all 0.25s; position: relative; overflow: hidden;
+  padding: 1.5rem; transition: all 0.25s; position: relative; overflow: hidden;
 }
+.skill-card-header { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1rem; }
+.skill-icon { font-size: 1.1rem; }
+.skill-card-title { font-size: 0.8rem; font-weight: 700; color: var(--text); }
+.skill-card-sub { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: var(--muted); }
 .skill-card::after {
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-  background: linear-gradient(90deg, var(--accent), var(--purple));
-  transform: scaleX(0); transition: transform 0.3s; transform-origin: left;
+  opacity: 0; transition: opacity 0.3s;
 }
-.skill-card:hover { border-color: rgba(59,130,246,0.35); transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,0.35); }
-.skill-card:hover::after { transform: scaleX(1); }
-.skill-cat { font-family: 'Fira Code', monospace; font-size: 0.65rem; letter-spacing: 0.1em; color: var(--accent); text-transform: uppercase; margin-bottom: 0.8rem; }
+.skill-card.fe::after { background: linear-gradient(90deg, #61dafb, #4f8ef7); }
+.skill-card.be::after { background: linear-gradient(90deg, #6db33f, #10d9a0); }
+.skill-card.db::after { background: linear-gradient(90deg, #f97316, #ec4899); }
+.skill-card.tools::after { background: linear-gradient(90deg, #a855f7, #6366f1); }
+.skill-card.qa::after { background: linear-gradient(90deg, #f59e0b, #f97316); }
+.skill-card.cloud::after { background: linear-gradient(90deg, #4f8ef7, #6366f1); }
+.skill-card:hover { border-color: var(--border2); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.4); }
+.skill-card:hover::after { opacity: 1; }
 .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 .tag {
-  background: rgba(59,130,246,0.07); border: 1px solid rgba(59,130,246,0.14);
-  border-radius: 4px; padding: 0.2rem 0.55rem; font-size: 0.72rem;
-  font-family: 'Fira Code', monospace; color: var(--sub); transition: all 0.2s;
+  border-radius: 4px; padding: 0.22rem 0.55rem; font-size: 0.68rem;
+  font-family: 'JetBrains Mono', monospace; transition: all 0.2s;
 }
-.tag:hover { background: rgba(59,130,246,0.15); color: var(--accent); }
+.tag-fe { background: rgba(97,218,251,0.06); border: 1px solid rgba(97,218,251,0.15); color: #61dafb99; }
+.tag-fe:hover { background: rgba(97,218,251,0.14); color: #61dafb; }
+.tag-be { background: rgba(109,179,63,0.06); border: 1px solid rgba(109,179,63,0.15); color: #6db33f99; }
+.tag-be:hover { background: rgba(109,179,63,0.14); color: #6db33f; }
+.tag-db { background: rgba(249,115,22,0.06); border: 1px solid rgba(249,115,22,0.15); color: #f9731699; }
+.tag-db:hover { background: rgba(249,115,22,0.14); color: var(--orange); }
+.tag-tools { background: rgba(168,85,247,0.06); border: 1px solid rgba(168,85,247,0.15); color: #a855f799; }
+.tag-tools:hover { background: rgba(168,85,247,0.14); color: #c084fc; }
+.tag-qa { background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.15); color: #f59e0b99; }
+.tag-qa:hover { background: rgba(245,158,11,0.14); color: var(--gold); }
+.tag-cloud { background: rgba(79,142,247,0.06); border: 1px solid rgba(79,142,247,0.15); color: #4f8ef799; }
+.tag-cloud:hover { background: rgba(79,142,247,0.14); color: var(--accent); }
+
+/* Full Stack Architecture Visual */
+.arch-banner {
+  margin-top: 2rem; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 1.5rem 2rem; display: flex; align-items: center; justify-content: center;
+  gap: 0; flex-wrap: nowrap; overflow: hidden;
+}
+.arch-layer {
+  text-align: center; padding: 0.6rem 1.2rem; border-radius: 8px;
+  flex: 1; min-width: 0;
+}
+.arch-layer.fe { background: rgba(97,218,251,0.07); border: 1px solid rgba(97,218,251,0.15); }
+.arch-layer.be { background: rgba(109,179,63,0.07); border: 1px solid rgba(109,179,63,0.15); }
+.arch-layer.db { background: rgba(249,115,22,0.07); border: 1px solid rgba(249,115,22,0.15); }
+.arch-label { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.3rem; }
+.arch-label.fe { color: #61dafb; }
+.arch-label.be { color: #6db33f; }
+.arch-label.db { color: var(--orange); }
+.arch-tech { font-size: 0.8rem; font-weight: 700; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.arch-arrow {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--muted);
+  padding: 0 0.8rem; white-space: nowrap; flex-shrink: 0;
+}
 
 /* ── PROJECT ── */
 .project-card {
   background: var(--card); border: 1px solid var(--border); border-radius: 16px;
   padding: 2rem; margin-top: 2.5rem; transition: all 0.25s;
+  position: relative; overflow: hidden;
 }
-.project-card:hover { border-color: rgba(59,130,246,0.3); box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
+.project-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2), var(--green));
+}
+.project-card:hover { border-color: rgba(79,142,247,0.3); box-shadow: 0 24px 60px rgba(0,0,0,0.45); }
 .project-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem; }
-.project-title { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.3px; }
-.project-sub { font-size: 0.85rem; color: var(--sub); margin-bottom: 1rem; }
+.project-title { font-size: 1.3rem; font-weight: 800; letter-spacing: -0.3px; }
+.project-sub { font-size: 0.83rem; color: var(--sub); margin-bottom: 1rem; }
 .badges { display: flex; gap: 0.5rem; flex-wrap: wrap; }
 .badge {
-  font-family: 'Fira Code', monospace; font-size: 0.65rem;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.63rem;
   padding: 0.2rem 0.65rem; border-radius: 999px; border: 1px solid;
 }
-.badge-blue { border-color: rgba(59,130,246,0.3); color: #60a5fa; background: rgba(59,130,246,0.07); }
-.badge-purple { border-color: rgba(168,85,247,0.3); color: #c084fc; background: rgba(168,85,247,0.07); }
-.badge-pink { border-color: rgba(240,171,252,0.3); color: #f0abfc; background: rgba(240,171,252,0.07); }
-.project-desc { color: var(--sub); font-size: 0.88rem; line-height: 1.75; margin-bottom: 1.4rem; }
-.contrib-title { font-family: 'Fira Code', monospace; font-size: 0.65rem; letter-spacing: 0.1em; color: var(--accent); text-transform: uppercase; margin-bottom: 0.8rem; }
-.contrib-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem; }
+.badge-blue { border-color: rgba(79,142,247,0.3); color: #93b4fb; background: rgba(79,142,247,0.07); }
+.badge-purple { border-color: rgba(99,102,241,0.3); color: #a5b4fc; background: rgba(99,102,241,0.07); }
+.badge-pink { border-color: rgba(236,72,153,0.3); color: #f9a8d4; background: rgba(236,72,153,0.07); }
+.badge-green { border-color: rgba(16,217,160,0.3); color: #6ee7c5; background: rgba(16,217,160,0.07); }
+.project-desc { color: var(--sub); font-size: 0.87rem; line-height: 1.8; margin-bottom: 1.5rem; }
+.contrib-title { font-family: 'JetBrains Mono', monospace; font-size: 0.63rem; letter-spacing: 0.1em; color: var(--accent); text-transform: uppercase; margin-bottom: 0.8rem; }
+.contrib-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem; margin-bottom: 1.5rem; }
 .contrib-item {
   display: flex; align-items: flex-start; gap: 0.5rem;
-  font-size: 0.82rem; color: var(--sub); padding: 0.45rem 0.5rem;
+  font-size: 0.8rem; color: var(--sub); padding: 0.45rem 0.5rem;
   border-radius: 6px; transition: background 0.2s;
 }
-.contrib-item:hover { background: rgba(59,130,246,0.05); color: var(--text); }
-.contrib-item::before { content: '▹'; color: var(--accent); flex-shrink: 0; font-size: 0.7rem; margin-top: 2px; }
+.contrib-item:hover { background: rgba(79,142,247,0.05); color: var(--text); }
+.contrib-item::before { content: '▹'; color: var(--accent); flex-shrink: 0; font-size: 0.68rem; margin-top: 2px; }
+
+/* Tech stack row in project */
+.project-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.proj-tag {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.64rem;
+  padding: 0.2rem 0.55rem; border-radius: 4px; border: 1px solid var(--border2); color: var(--muted);
+  transition: all 0.2s;
+}
+.proj-tag:hover { color: var(--text); border-color: var(--accent); }
 
 /* ── EXPERIENCE ── */
+.exp-timeline { position: relative; margin-top: 2.5rem; }
+.exp-timeline::before {
+  content: ''; position: absolute; left: 20px; top: 0; bottom: 0; width: 1px;
+  background: linear-gradient(180deg, var(--accent), var(--accent2), transparent);
+}
 .exp-card {
   background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
-  padding: 1.6rem; margin-top: 2rem; display: flex; gap: 1.2rem; transition: all 0.25s;
+  padding: 1.6rem 1.6rem 1.6rem 3.5rem; margin-bottom: 1.2rem; transition: all 0.25s;
+  position: relative;
 }
-.exp-card:hover { border-color: rgba(59,130,246,0.3); transform: translateX(4px); }
-.exp-icon {
-  width: 44px; height: 44px; flex-shrink: 0; border-radius: 10px;
-  background: linear-gradient(135deg, var(--purple), var(--accent));
-  display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+.exp-card::before {
+  content: ''; position: absolute; left: 13px; top: 2rem; width: 15px; height: 15px;
+  background: var(--accent); border-radius: 50%; border: 3px solid var(--bg);
+  box-shadow: 0 0 12px rgba(79,142,247,0.5);
 }
-.exp-company { font-size: 1rem; font-weight: 700; margin-bottom: 0.15rem; }
-.exp-role { font-family: 'Fira Code', monospace; font-size: 0.7rem; color: var(--accent); margin-bottom: 0.6rem; }
-.exp-desc { font-size: 0.85rem; color: var(--sub); line-height: 1.7; }
+.exp-card:hover { border-color: rgba(79,142,247,0.3); transform: translateX(5px); }
+.exp-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem; }
+.exp-company { font-size: 1.05rem; font-weight: 800; }
+.exp-duration { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--muted); background: var(--surface); padding: 0.2rem 0.6rem; border-radius: 4px; border: 1px solid var(--border); }
+.exp-role { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--accent); margin-bottom: 0.8rem; letter-spacing: 0.04em; }
+.exp-desc { font-size: 0.84rem; color: var(--sub); line-height: 1.75; }
 
 /* ── ACHIEVEMENTS ── */
 .ach-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2.5rem; }
 .ach-card {
   background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
-  padding: 1.5rem; position: relative; overflow: hidden; transition: all 0.25s;
+  padding: 1.6rem; position: relative; overflow: hidden; transition: all 0.25s;
 }
-.ach-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: linear-gradient(180deg, var(--accent), var(--purple)); }
-.ach-card:hover { border-color: rgba(59,130,246,0.3); transform: translateY(-3px); }
-.ach-num { font-size: 2rem; font-weight: 800; color: rgba(59,130,246,0.12); line-height: 1; margin-bottom: 0.5rem; font-family: 'Fira Code', monospace; }
-.ach-text { font-size: 0.85rem; color: var(--sub); line-height: 1.7; }
+.ach-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: linear-gradient(180deg, var(--accent), var(--accent2)); }
+.ach-card:hover { border-color: rgba(79,142,247,0.3); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.4); }
+.ach-num { font-size: 2.2rem; font-weight: 800; color: rgba(79,142,247,0.1); line-height: 1; margin-bottom: 0.5rem; font-family: 'JetBrains Mono', monospace; }
+.ach-title { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.4rem; color: var(--text); }
+.ach-text { font-size: 0.82rem; color: var(--sub); line-height: 1.75; }
 
 /* ── EDUCATION ── */
 .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2.5rem; }
-.edu-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.4rem; transition: all 0.25s; }
-.edu-card:hover { border-color: rgba(59,130,246,0.3); transform: translateY(-3px); }
-.edu-deg { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.3rem; }
-.edu-school { font-size: 0.78rem; color: var(--sub); margin-bottom: 0.7rem; line-height: 1.5; }
+.edu-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; transition: all 0.25s; }
+.edu-card:hover { border-color: rgba(79,142,247,0.3); transform: translateY(-4px); }
+.edu-deg { font-size: 0.95rem; font-weight: 800; margin-bottom: 0.35rem; }
+.edu-school { font-size: 0.77rem; color: var(--sub); margin-bottom: 0.8rem; line-height: 1.5; }
 .edu-meta { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-.pill { font-family: 'Fira Code', monospace; font-size: 0.65rem; padding: 0.2rem 0.6rem; border-radius: 4px; }
-.pill-blue { background: rgba(59,130,246,0.1); color: #60a5fa; }
-.pill-purple { background: rgba(168,85,247,0.1); color: #c084fc; }
+.pill { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; padding: 0.2rem 0.65rem; border-radius: 4px; }
+.pill-blue { background: rgba(79,142,247,0.1); color: #93b4fb; }
+.pill-purple { background: rgba(99,102,241,0.1); color: #a5b4fc; }
+.pill-gold { background: rgba(245,158,11,0.1); color: var(--gold); border: 1px solid rgba(245,158,11,0.2); }
 
 /* ── CONTACT ── */
 .contact-box {
-  background: var(--card); border: 1px solid var(--border); border-radius: 16px;
-  padding: 3rem 2rem; text-align: center; max-width: 600px; margin: 2.5rem auto 0;
+  background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+  padding: 3rem 2rem; text-align: center; max-width: 620px; margin: 2.5rem auto 0;
+  position: relative; overflow: hidden;
 }
-.contact-desc { color: var(--sub); font-size: 0.9rem; line-height: 1.8; margin: 0.8rem 0 2rem; }
+.contact-box::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2), var(--green));
+}
+.contact-title { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.6rem; }
+.contact-desc { color: var(--sub); font-size: 0.88rem; line-height: 1.85; margin: 0 0 2rem; }
 .contact-ctas { display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
 .contact-links { display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap; }
 .contact-link {
   display: inline-flex; align-items: center; gap: 0.4rem;
-  font-family: 'Fira Code', monospace; font-size: 0.72rem; color: var(--muted);
+  font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--muted);
   padding: 0.55rem 1rem; border: 1px solid var(--border); border-radius: 6px;
   background: transparent; cursor: pointer; text-decoration: none; transition: all 0.25s;
 }
-.contact-link:hover { color: var(--accent); border-color: var(--accent); background: var(--accent-glow); }
+.contact-link:hover { color: var(--accent); border-color: var(--accent); background: var(--glow); }
+.contact-link-teal { background: linear-gradient(135deg, rgba(16,217,160,0.1), rgba(20,184,166,0.07)); color: #5eead4; border-color: rgba(16,217,160,0.3); }
+.contact-link-teal:hover { background: linear-gradient(135deg, rgba(16,217,160,0.2), rgba(20,184,166,0.15)); border-color: rgba(16,217,160,0.6); color: #99f6e4; box-shadow: 0 6px 20px rgba(16,217,160,0.2); }
 
 /* ── FOOTER ── */
 footer {
-  text-align: center; padding: 1.8rem; font-family: 'Fira Code', monospace;
-  font-size: 0.68rem; color: var(--muted); border-top: 1px solid var(--border); position: relative; z-index: 1;
+  text-align: center; padding: 2rem; font-family: 'JetBrains Mono', monospace;
+  font-size: 0.66rem; color: var(--muted); border-top: 1px solid var(--border); position: relative; z-index: 1;
 }
+footer span { color: var(--accent); }
 
 /* ── TOAST ── */
 #copy-toast {
   display: none; position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
-  background: var(--green); color: #000; font-family: 'Fira Code', monospace;
-  font-size: 0.75rem; padding: 0.5rem 1.2rem; border-radius: 999px; z-index: 9999; font-weight: 600;
+  background: var(--green); color: #000; font-family: 'JetBrains Mono', monospace;
+  font-size: 0.73rem; padding: 0.5rem 1.3rem; border-radius: 999px; z-index: 9999; font-weight: 700;
 }
 
-/* ══════════════════════════════════
-   RESPONSIVE BREAKPOINTS
-══════════════════════════════════ */
+/* ── RECRUITER EYECATCHER STRIP ── */
+.eyecatch-strip {
+  background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  overflow: hidden; padding: 0.8rem 0; position: relative; z-index: 1;
+}
+.eyecatch-inner {
+  display: flex; gap: 3rem; animation: marquee 30s linear infinite; width: max-content;
+}
+.eyecatch-item {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--muted); white-space: nowrap;
+}
+.eyecatch-item span { color: var(--accent); }
+@keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
 
-/* Tablet 768-1023 */
+/* ── RESPONSIVE ── */
 @media (max-width: 1023px) {
   .skills-grid { grid-template-columns: repeat(2, 1fr); }
   .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-  .hero-stats { grid-template-columns: repeat(2, 1fr); }
+  .hero-stats { grid-template-columns: repeat(3, 1fr); }
+  .arch-arrow { font-size: 0.55rem; padding: 0 0.4rem; }
 }
-
-/* Mobile < 768 */
 @media (max-width: 767px) {
   :root { --nav-h: 56px; }
   .nav-links { display: none; }
   .nav-mobile-toggle { display: flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; }
-
   .hero { padding: calc(var(--nav-h) + 2rem) 5% 3rem; min-height: auto; }
-  .hero-inner { max-width: 100%; }
   .hero-name { font-size: 2rem; letter-spacing: -0.5px; }
-  .hero-role { font-size: 1.2rem; }
-  .hero-desc { font-size: 0.88rem; }
-  .hero-actions { gap: 0.6rem; }
-  .btn { font-size: 0.72rem; padding: 0.65rem 1.1rem; }
-  .hero-stats { grid-template-columns: repeat(2, 1fr); margin-top: 2rem; }
-
+  .hero-role { font-size: 1.1rem; }
+  .hero-stats { grid-template-columns: repeat(3, 1fr); }
   .sec-pad { padding: 3.5rem 0; }
-  .sec-title { font-size: 1.4rem; }
-
+  .sec-title { font-size: 1.45rem; }
   .skills-grid { grid-template-columns: 1fr; }
   .contrib-grid { grid-template-columns: 1fr; }
   .ach-grid { grid-template-columns: 1fr; }
   .edu-grid { grid-template-columns: 1fr; }
-
   .project-top { flex-direction: column; }
-  .exp-card { flex-direction: column; gap: 0.8rem; }
-
   .contact-box { padding: 2rem 1.2rem; }
-  .contact-ctas { flex-direction: column; align-items: center; }
-  .contact-links { flex-direction: column; align-items: center; }
-  .contact-link { width: 100%; justify-content: center; max-width: 280px; }
-  .btn { width: 100%; justify-content: center; max-width: 280px; }
-
+  .contact-ctas,.contact-links { flex-direction: column; align-items: center; }
+  .contact-link,.btn { width: 100%; justify-content: center; max-width: 290px; }
   .info-item { flex-direction: column; align-items: flex-start; gap: 0.2rem; }
   .info-val { text-align: left; }
+  .exp-timeline::before { display: none; }
+  .exp-card { padding-left: 1.6rem; }
+  .exp-card::before { display: none; }
+  .arch-banner { padding: 1rem; }
+  .arch-arrow { display: none; }
+  .arch-layer { padding: 0.5rem 0.8rem; }
+  .arch-tech { font-size: 0.72rem; }
 }
-
-/* Small phones < 380px */
 @media (max-width: 380px) {
   .hero-name { font-size: 1.75rem; }
-  .hero-role { font-size: 1.05rem; }
-  .stat-num { font-size: 1.3rem; }
+  .stat-num { font-size: 1.2rem; }
+  .hero-stats { grid-template-columns: repeat(2, 1fr); }
 }
 </style>
 </head>
@@ -367,16 +495,18 @@ footer {
 <div class="bg-grid"></div>
 <div class="bg-orb orb1"></div>
 <div class="bg-orb orb2"></div>
+<div class="bg-orb orb3"></div>
 
 <!-- NAV -->
 <nav>
   <div class="nav-logo">MG.</div>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
+    <li><a href="#skills">Stack</a></li>
     <li><a href="#projects-section">Projects</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li><a class="nav-cta" href="#contact">Hire Me →</a></li>
   </ul>
   <button class="nav-mobile-toggle" onclick="toggleMenu()" aria-label="Menu">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
@@ -388,7 +518,7 @@ footer {
 <div class="mobile-menu" id="mobile-menu">
   <ul>
     <li><a href="#about" onclick="closeMenu()">About</a></li>
-    <li><a href="#skills" onclick="closeMenu()">Skills</a></li>
+    <li><a href="#skills" onclick="closeMenu()">Stack</a></li>
     <li><a href="#projects-section" onclick="closeMenu()">Projects</a></li>
     <li><a href="#experience" onclick="closeMenu()">Experience</a></li>
     <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
@@ -400,30 +530,71 @@ footer {
   <div class="hero-inner">
     <div class="hero-badge">
       <span class="badge-dot"></span>
-      Available for new opportunities
+      Open to Full Stack Developer Opportunities
     </div>
     <h1 class="hero-name">Matcha Geetha</h1>
-    <div class="hero-role">React Developer</div>
+    <div class="hero-role">
+      <div class="role-stack">
+        <span class="role-chip react">⚛ React</span>
+        <span class="role-dot">◆</span>
+        <span class="role-chip spring"><svg style="width:16px;height:16px;vertical-align:middle;display:inline-block;" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><path d="M49.198 6.888C46.563 18.36 29.274 27.75 20.07 27.75c-2.177 0-3.64-.58-4.5-1.8-.512-.73-.66-1.62-.44-2.65.23-1.07.85-2.28 1.86-3.56 1.13-1.44 2.59-2.96 4.36-4.55-1.51 1.02-2.93 2.14-4.24 3.35-2.82 2.59-5.12 5.46-5.75 8.32-.32 1.44-.17 2.81.43 4 .58 1.15 1.54 2.05 2.85 2.69-1.3.36-2.54.55-3.7.55-2.32 0-4.05-.72-5.1-2.14-.86-1.16-1.18-2.7-.94-4.43.24-1.74 1.01-3.66 2.3-5.64 2.9-4.4 8.28-9.05 15.7-13.3C31.4 3.34 41.7.7 49.2 6.89zm-44.02 33.6C7.28 40.13 9.7 41 12.25 41c4.18 0 8.74-1.77 12.76-4.85-3.27.44-6.33.48-8.8-.05-2.6-.56-4.38-1.77-5.07-3.53-1.11.48-2.1 1.03-2.98 1.63a15.7 15.7 0 0 0-2.99 2.28z" fill="#6DB33F"/></svg> Spring Boot</span>
+        <span class="role-dot">◆</span>
+        <span style="color:var(--sub); font-weight:600">Full Stack Developer</span>
+      </div>
+    </div>
     <p class="hero-desc">
-      Building scalable, high-performance frontend applications with React.js and Next.js.
-      Passionate about clean UI, seamless API integration, and delivering exceptional user experiences.
+      Building end-to-end web applications — pixel-perfect React.js frontends paired with robust Spring Boot microservices backends.
+      2+ years delivering scalable, production-ready solutions with clean architecture, seamless API design, and exceptional user experiences.
     </p>
     <div class="hero-actions">
-      <button class="btn btn-blue" onclick="openGmail()">&#9993; Hire Me</button>
+      <button class="btn btn-blue" onclick="openGmail()">✉ Hire Me</button>
       <a href="https://github.com/GeethaMatcha" target="_blank" rel="noopener" class="btn btn-dark">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
         GitHub
       </a>
-      <a href="#projects-section" class="btn btn-outline">View Projects &#8594;</a>
+      <a href="#projects-section" class="btn btn-purple">View Projects →</a>
+      <a href="#skills" class="btn btn-green">⚡ Full Stack</a>
     </div>
     <div class="hero-stats">
-      <div class="stat-item"><span class="stat-num">2+</span><span class="stat-lbl">Yrs Experience</span></div>
+      <div class="stat-item"><span class="stat-num">2+</span><span class="stat-lbl">Yrs Exp</span></div>
+      <div class="stat-item"><span class="stat-num" style="display:flex;align-items:center;justify-content:center;gap:4px;font-size:1rem;">⚛ + <svg style="width:16px;height:16px;vertical-align:middle;display:inline-block;" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><path d="M49.198 6.888C46.563 18.36 29.274 27.75 20.07 27.75c-2.177 0-3.64-.58-4.5-1.8-.512-.73-.66-1.62-.44-2.65.23-1.07.85-2.28 1.86-3.56 1.13-1.44 2.59-2.96 4.36-4.55-1.51 1.02-2.93 2.14-4.24 3.35-2.82 2.59-5.12 5.46-5.75 8.32-.32 1.44-.17 2.81.43 4 .58 1.15 1.54 2.05 2.85 2.69-1.3.36-2.54.55-3.7.55-2.32 0-4.05-.72-5.1-2.14-.86-1.16-1.18-2.7-.94-4.43.24-1.74 1.01-3.66 2.3-5.64 2.9-4.4 8.28-9.05 15.7-13.3C31.4 3.34 41.7.7 49.2 6.89zm-44.02 33.6C7.28 40.13 9.7 41 12.25 41c4.18 0 8.74-1.77 12.76-4.85-3.27.44-6.33.48-8.8-.05-2.6-.56-4.38-1.77-5.07-3.53-1.11.48-2.1 1.03-2.98 1.63a15.7 15.7 0 0 0-2.99 2.28z" fill="#6DB33F"/></svg></span><span class="stat-lbl">Full Stack</span></div>
       <div class="stat-item"><span class="stat-num">1</span><span class="stat-lbl">Live Project</span></div>
       <div class="stat-item"><span class="stat-num">9.55</span><span class="stat-lbl">B.Tech CGPA</span></div>
-      <div class="stat-item"><span class="stat-num">13+</span><span class="stat-lbl">Tech Skills</span></div>
+      <div class="stat-item"><span class="stat-num">20+</span><span class="stat-lbl">Tech Skills</span></div>
     </div>
   </div>
 </section>
+
+<!-- TICKER STRIP -->
+<div class="eyecatch-strip">
+  <div class="eyecatch-inner">
+    <div class="eyecatch-item"><span>⚛</span> React.js</div>
+    <div class="eyecatch-item"><svg style="width:16px;height:16px;vertical-align:middle;display:inline-block;" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><path d="M49.198 6.888C46.563 18.36 29.274 27.75 20.07 27.75c-2.177 0-3.64-.58-4.5-1.8-.512-.73-.66-1.62-.44-2.65.23-1.07.85-2.28 1.86-3.56 1.13-1.44 2.59-2.96 4.36-4.55-1.51 1.02-2.93 2.14-4.24 3.35-2.82 2.59-5.12 5.46-5.75 8.32-.32 1.44-.17 2.81.43 4 .58 1.15 1.54 2.05 2.85 2.69-1.3.36-2.54.55-3.7.55-2.32 0-4.05-.72-5.1-2.14-.86-1.16-1.18-2.7-.94-4.43.24-1.74 1.01-3.66 2.3-5.64 2.9-4.4 8.28-9.05 15.7-13.3C31.4 3.34 41.7.7 49.2 6.89zm-44.02 33.6C7.28 40.13 9.7 41 12.25 41c4.18 0 8.74-1.77 12.76-4.85-3.27.44-6.33.48-8.8-.05-2.6-.56-4.38-1.77-5.07-3.53-1.11.48-2.1 1.03-2.98 1.63a15.7 15.7 0 0 0-2.99 2.28z" fill="#6DB33F"/></svg> Spring Boot</div>
+    <div class="eyecatch-item"><span>🔗</span> Microservices</div>
+    <div class="eyecatch-item"><span>▲</span> Next.js</div>
+    <div class="eyecatch-item"><span>☁</span> REST APIs</div>
+    <div class="eyecatch-item"><span>🗄</span> MySQL</div>
+    <div class="eyecatch-item"><span>🔧</span> Spring Security</div>
+    <div class="eyecatch-item"><span>📦</span> Docker</div>
+    <div class="eyecatch-item"><span>🔀</span> Redux</div>
+    <div class="eyecatch-item"><span>🔑</span> JWT / OAuth2</div>
+    <div class="eyecatch-item"><span>📐</span> TypeScript</div>
+    <div class="eyecatch-item"><span>🐙</span> Git / GitHub</div>
+    <!-- duplicate for seamless loop -->
+    <div class="eyecatch-item"><span>⚛</span> React.js</div>
+    <div class="eyecatch-item"><svg style="width:16px;height:16px;vertical-align:middle;display:inline-block;" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><path d="M49.198 6.888C46.563 18.36 29.274 27.75 20.07 27.75c-2.177 0-3.64-.58-4.5-1.8-.512-.73-.66-1.62-.44-2.65.23-1.07.85-2.28 1.86-3.56 1.13-1.44 2.59-2.96 4.36-4.55-1.51 1.02-2.93 2.14-4.24 3.35-2.82 2.59-5.12 5.46-5.75 8.32-.32 1.44-.17 2.81.43 4 .58 1.15 1.54 2.05 2.85 2.69-1.3.36-2.54.55-3.7.55-2.32 0-4.05-.72-5.1-2.14-.86-1.16-1.18-2.7-.94-4.43.24-1.74 1.01-3.66 2.3-5.64 2.9-4.4 8.28-9.05 15.7-13.3C31.4 3.34 41.7.7 49.2 6.89zm-44.02 33.6C7.28 40.13 9.7 41 12.25 41c4.18 0 8.74-1.77 12.76-4.85-3.27.44-6.33.48-8.8-.05-2.6-.56-4.38-1.77-5.07-3.53-1.11.48-2.1 1.03-2.98 1.63a15.7 15.7 0 0 0-2.99 2.28z" fill="#6DB33F"/></svg> Spring Boot</div>
+    <div class="eyecatch-item"><span>🔗</span> Microservices</div>
+    <div class="eyecatch-item"><span>▲</span> Next.js</div>
+    <div class="eyecatch-item"><span>☁</span> REST APIs</div>
+    <div class="eyecatch-item"><span>🗄</span> MySQL</div>
+    <div class="eyecatch-item"><span>🔧</span> Spring Security</div>
+    <div class="eyecatch-item"><span>📦</span> Docker</div>
+    <div class="eyecatch-item"><span>🔀</span> Redux</div>
+    <div class="eyecatch-item"><span>🔑</span> JWT / OAuth2</div>
+    <div class="eyecatch-item"><span>📐</span> TypeScript</div>
+    <div class="eyecatch-item"><span>🐙</span> Git / GitHub</div>
+  </div>
+</div>
 
 <!-- ABOUT -->
 <section class="divider" id="about">
@@ -432,74 +603,174 @@ footer {
     <h2 class="sec-title">Who I Am</h2>
     <div class="about-grid">
       <div class="about-text">
-        <p>I'm a React Developer with 2+ years of experience designing and developing scalable frontend applications. I specialize in building modular, reusable components with React.js, Next.js, and JavaScript (ES6+).</p>
-        <p>My expertise spans responsive UI development, RESTful API integration, state management using Redux and Context API, and cross-browser compatibility across all devices.</p>
-        <p>I thrive in Agile environments, collaborating with backend, QA, and design teams to deliver production-ready applications with strong performance and maintainability.</p>
+        <p>I'm a <span class="about-highlight">Full Stack Developer</span> with 2+ years of experience building end-to-end web applications. On the frontend I specialize in <span class="about-highlight">React.js, Next.js, and TypeScript</span>; on the backend I design and deploy scalable <span class="about-highlight">Spring Boot microservices</span> with secure RESTful APIs.</p>
+        <p>I architect systems that are production-ready from day one — clean component hierarchies on the client, layered service architecture on the server, and efficient data models in MySQL / PostgreSQL. I handle everything from JWT-secured endpoints to Redux-powered UI state.</p>
+        <p>I thrive in <span class="about-highlight">Agile cross-functional teams</span>, collaborating with product, design, and DevOps to ship reliable, maintainable software. I care deeply about performance, security, and developer experience.</p>
       </div>
       <div class="info-list">
-        <div class="info-item"><span class="info-key">&#128231; Email</span><span class="info-val">geethamatchas&#64;gmail.com</span></div>
-        <div class="info-item"><span class="info-key">&#128222; Phone</span><span class="info-val">+91 9502441278</span></div>
-        <div class="info-item"><span class="info-key">&#128188; Role</span><span class="info-val">React Developer</span></div>
-        <div class="info-item"><span class="info-key">&#127970; Company</span><span class="info-val">VolkSoft Technologies</span></div>
-        <div class="info-item"><span class="info-key">&#9202; Experience</span><span class="info-val">2+ Years</span></div>
-        <div class="info-item">
-          <span class="info-key">&#128025; GitHub</span>
-          <span class="info-val"><a href="https://github.com/GeethaMatcha" target="_blank" rel="noopener">GeethaMatcha</a></span>
-        </div>
-        <div class="info-item"><span class="info-key">&#128994; Status</span><span class="info-val">Open to Opportunities</span></div>
+        <div class="info-item"><span class="info-key">✉ Email</span><span class="info-val">geethamatchas@gmail.com</span></div>
+        <div class="info-item"><span class="info-key">📱 Phone</span><span class="info-val">+91 9502441278</span></div>
+        <div class="info-item"><span class="info-key">💼 Role</span><span class="info-val">Full Stack Developer</span></div>
+        <div class="info-item"><span class="info-key">🏢 Company</span><span class="info-val">VolkSoft Technologies</span></div>
+        <div class="info-item"><span class="info-key">⚛ Frontend</span><span class="info-val">React · Next.js · TypeScript</span></div>
+        <div class="info-item"><span class="info-key" style="display:flex;align-items:center;gap:5px;"><svg style="width:16px;height:16px;vertical-align:middle;display:inline-block;" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><path d="M49.198 6.888C46.563 18.36 29.274 27.75 20.07 27.75c-2.177 0-3.64-.58-4.5-1.8-.512-.73-.66-1.62-.44-2.65.23-1.07.85-2.28 1.86-3.56 1.13-1.44 2.59-2.96 4.36-4.55-1.51 1.02-2.93 2.14-4.24 3.35-2.82 2.59-5.12 5.46-5.75 8.32-.32 1.44-.17 2.81.43 4 .58 1.15 1.54 2.05 2.85 2.69-1.3.36-2.54.55-3.7.55-2.32 0-4.05-.72-5.1-2.14-.86-1.16-1.18-2.7-.94-4.43.24-1.74 1.01-3.66 2.3-5.64 2.9-4.4 8.28-9.05 15.7-13.3C31.4 3.34 41.7.7 49.2 6.89zm-44.02 33.6C7.28 40.13 9.7 41 12.25 41c4.18 0 8.74-1.77 12.76-4.85-3.27.44-6.33.48-8.8-.05-2.6-.56-4.38-1.77-5.07-3.53-1.11.48-2.1 1.03-2.98 1.63a15.7 15.7 0 0 0-2.99 2.28z" fill="#6DB33F"/></svg> Backend</span><span class="info-val">Spring Boot · Microservices</span></div>
+        <div class="info-item"><span class="info-key">🐙 GitHub</span><span class="info-val"><a href="https://github.com/GeethaMatcha" target="_blank" rel="noopener">GeethaMatcha</a></span></div>
+        <div class="info-item"><span class="info-key">🟢 Status</span><span class="info-val">Open to Opportunities</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SKILLS -->
+<!-- SKILLS — FULL STACK -->
 <section id="skills">
   <div class="container sec-pad">
-    <div class="sec-tag">02. Skills</div>
-    <h2 class="sec-title">Technical Stack</h2>
-    <p class="sec-sub">A modern frontend toolkit with full-stack awareness.</p>
-    <div class="skills-grid">
-      <div class="skill-card">
-        <div class="skill-cat">&#9889; Frontend Core</div>
-        <div class="tags">
-          <span class="tag">React.js</span><span class="tag">Next.js</span>
-          <span class="tag">JavaScript ES6+</span><span class="tag">TypeScript</span>
-          <span class="tag">HTML5</span><span class="tag">CSS3</span>
-        </div>
+    <div class="sec-tag">02. Tech Stack</div>
+    <h2 class="sec-title">Full Stack Expertise</h2>
+    <p class="sec-sub">End-to-end development capability — from React UI to Spring Boot microservices to production deployment.</p>
+
+    <!-- Architecture Banner -->
+    <div class="arch-banner">
+      <div class="arch-layer fe">
+        <div class="arch-label fe">Frontend</div>
+        <div class="arch-tech">React · Next.js · TypeScript</div>
       </div>
-      <div class="skill-card">
-        <div class="skill-cat">&#129504; State &amp; Routing</div>
-        <div class="tags">
-          <span class="tag">Redux</span><span class="tag">Context API</span>
-          <span class="tag">React Hooks</span><span class="tag">React Router</span>
-        </div>
+      <div class="arch-arrow">──── REST / JSON ────▶</div>
+      <div class="arch-layer be">
+        <div class="arch-label be">Backend</div>
+        <div class="arch-tech">Spring Boot · Microservices</div>
       </div>
-      <div class="skill-card">
-        <div class="skill-cat">&#127912; UI Libraries</div>
-        <div class="tags">
-          <span class="tag">Material UI</span><span class="tag">Kendo UI</span>
-          <span class="tag">Bootstrap</span><span class="tag">Responsive Design</span>
-        </div>
+      <div class="arch-arrow">──── JDBC / JPA ────▶</div>
+      <div class="arch-layer db">
+        <div class="arch-label db">Database</div>
+        <div class="arch-tech">MySQL · PostgreSQL</div>
       </div>
-       <div class="skill-card">
-      <div class="skill-cat">&#128268; API &amp; Backend</div>
-        <div class="tags">
-          <span class="tag">RESTful APIs</span>
-          <span class="tag">Axios</span><span class="tag">Fetch API</span><span class="tag">JSON</span>
-        </div>
     </div>
-      <div class="skill-card">
-        <div class="skill-cat">&#128295; Build &amp; DevOps</div>
+
+    <div class="skills-grid" style="margin-top:1.5rem;">
+      <!-- Frontend -->
+      <div class="skill-card fe">
+        <div class="skill-card-header">
+          <span class="skill-icon">⚛</span>
+          <div>
+            <div class="skill-card-title">Frontend</div>
+            <div class="skill-card-sub">React Ecosystem</div>
+          </div>
+          <span class="stack-label stack-fe" style="margin-left:auto;">React</span>
+        </div>
         <div class="tags">
-          <span class="tag">Webpack</span><span class="tag">Git</span>
-          <span class="tag">Postman</span><span class="tag">VS Code</span><span class="tag">Agile</span>
+          <span class="tag tag-fe">React.js</span>
+          <span class="tag tag-fe">Next.js</span>
+          <span class="tag tag-fe">TypeScript</span>
+          <span class="tag tag-fe">JavaScript ES6+</span>
+          <span class="tag tag-fe">HTML5</span>
+          <span class="tag tag-fe">CSS3</span>
+          <span class="tag tag-fe">Redux</span>
+          <span class="tag tag-fe">Context API</span>
+          <span class="tag tag-fe">React Hooks</span>
+          <span class="tag tag-fe">React Router</span>
         </div>
       </div>
-      <div class="skill-card">
-        <div class="skill-cat">&#9989; Testing &amp; QA</div>
+
+      <!-- Backend / Spring -->
+      <div class="skill-card be">
+        <div class="skill-card-header">
+          <span class="skill-icon"><svg style="width:16px;height:16px;vertical-align:middle;display:inline-block;" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><path d="M49.198 6.888C46.563 18.36 29.274 27.75 20.07 27.75c-2.177 0-3.64-.58-4.5-1.8-.512-.73-.66-1.62-.44-2.65.23-1.07.85-2.28 1.86-3.56 1.13-1.44 2.59-2.96 4.36-4.55-1.51 1.02-2.93 2.14-4.24 3.35-2.82 2.59-5.12 5.46-5.75 8.32-.32 1.44-.17 2.81.43 4 .58 1.15 1.54 2.05 2.85 2.69-1.3.36-2.54.55-3.7.55-2.32 0-4.05-.72-5.1-2.14-.86-1.16-1.18-2.7-.94-4.43.24-1.74 1.01-3.66 2.3-5.64 2.9-4.4 8.28-9.05 15.7-13.3C31.4 3.34 41.7.7 49.2 6.89zm-44.02 33.6C7.28 40.13 9.7 41 12.25 41c4.18 0 8.74-1.77 12.76-4.85-3.27.44-6.33.48-8.8-.05-2.6-.56-4.38-1.77-5.07-3.53-1.11.48-2.1 1.03-2.98 1.63a15.7 15.7 0 0 0-2.99 2.28z" fill="#6DB33F"/></svg></span>
+          <div>
+            <div class="skill-card-title">Backend</div>
+            <div class="skill-card-sub">Spring Ecosystem</div>
+          </div>
+          <span class="stack-label stack-be" style="margin-left:auto;">Spring</span>
+        </div>
         <div class="tags">
-          <span class="tag">Unit Testing</span><span class="tag">Integration Testing</span>
-          <span class="tag">SIT / UAT</span><span class="tag">Bug Fixing</span>
+          <span class="tag tag-be">Spring Boot</span>
+          <span class="tag tag-be">Spring MVC</span>
+          <span class="tag tag-be">Spring Security</span>
+          <span class="tag tag-be">Spring Data JPA</span>
+          <span class="tag tag-be">Microservices</span>
+          <span class="tag tag-be">RESTful APIs</span>
+          <span class="tag tag-be">JWT Auth</span>
+          <span class="tag tag-be">OAuth2</span>
+          <span class="tag tag-be">Hibernate</span>
+          <span class="tag tag-be">Maven</span>
+        </div>
+      </div>
+
+      <!-- Database -->
+      <div class="skill-card db">
+        <div class="skill-card-header">
+          <span class="skill-icon">🗄</span>
+          <div>
+            <div class="skill-card-title">Database</div>
+            <div class="skill-card-sub">Data Layer</div>
+          </div>
+          <span class="stack-label stack-db" style="margin-left:auto;">DB</span>
+        </div>
+        <div class="tags">
+          <span class="tag tag-db">MySQL</span>
+          <span class="tag tag-db">PostgreSQL</span>
+          <span class="tag tag-db">JPA / ORM</span>
+          <span class="tag tag-db">JDBC</span>
+          <span class="tag tag-db">SQL Queries</span>
+          <span class="tag tag-db">Schema Design</span>
+        </div>
+      </div>
+
+      <!-- UI Libraries -->
+      <div class="skill-card fe">
+        <div class="skill-card-header">
+          <span class="skill-icon">🎨</span>
+          <div>
+            <div class="skill-card-title">UI Libraries</div>
+            <div class="skill-card-sub">Design Systems</div>
+          </div>
+        </div>
+        <div class="tags">
+          <span class="tag tag-fe">Material UI</span>
+          <span class="tag tag-fe">Kendo UI</span>
+          <span class="tag tag-fe">Bootstrap</span>
+          <span class="tag tag-fe">Responsive Design</span>
+          <span class="tag tag-fe">Axios</span>
+          <span class="tag tag-fe">Fetch API</span>
+        </div>
+      </div>
+
+      <!-- DevOps & Tools -->
+      <div class="skill-card tools">
+        <div class="skill-card-header">
+          <span class="skill-icon">🔧</span>
+          <div>
+            <div class="skill-card-title">DevOps & Tools</div>
+            <div class="skill-card-sub">Build & Deploy</div>
+          </div>
+          <span class="stack-label stack-tools" style="margin-left:auto;">DevOps</span>
+        </div>
+        <div class="tags">
+          <span class="tag tag-tools">Docker</span>
+          <span class="tag tag-tools">Git / GitHub</span>
+          <span class="tag tag-tools">Webpack</span>
+          <span class="tag tag-tools">Postman</span>
+          <span class="tag tag-tools">VS Code</span>
+          <span class="tag tag-tools">IntelliJ IDEA</span>
+          <span class="tag tag-tools">Agile / Scrum</span>
+          <span class="tag tag-tools">JIRA</span>
+        </div>
+      </div>
+
+      <!-- Testing & QA -->
+      <div class="skill-card qa">
+        <div class="skill-card-header">
+          <span class="skill-icon">✅</span>
+          <div>
+            <div class="skill-card-title">Testing & QA</div>
+            <div class="skill-card-sub">Quality Engineering</div>
+          </div>
+        </div>
+        <div class="tags">
+          <span class="tag tag-qa">Unit Testing</span>
+          <span class="tag tag-qa">Integration Testing</span>
+          <span class="tag tag-qa">SIT / UAT</span>
+          <span class="tag tag-qa">API Testing</span>
+          <span class="tag tag-qa">Bug Fixing</span>
         </div>
       </div>
     </div>
@@ -515,28 +786,52 @@ footer {
       <div class="project-top">
         <div>
           <div class="project-title">mCare — Women's Microfinance Loans</div>
-          <div class="project-sub">Secure web-based loan management platform for women entrepreneurs</div>
+          <div class="project-sub">Full Stack loan management platform for women entrepreneurs · Indus Bank</div>
         </div>
         <div class="badges">
-          <span class="badge badge-pink">&#127970; Indus Bank</span>
-          <span class="badge badge-blue">&#128101; Team of 6</span>
-          <span class="badge badge-purple">&#9883; React Dev</span>
+          <span class="badge badge-pink">🏦 Indus Bank</span>
+          <span class="badge badge-blue">👥 Team of 6</span>
+          <span class="badge badge-purple">⚛ React Dev</span>
+          <span class="badge badge-green"><svg style="width:16px;height:16px;vertical-align:middle;display:inline-block;" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><path d="M49.198 6.888C46.563 18.36 29.274 27.75 20.07 27.75c-2.177 0-3.64-.58-4.5-1.8-.512-.73-.66-1.62-.44-2.65.23-1.07.85-2.28 1.86-3.56 1.13-1.44 2.59-2.96 4.36-4.55-1.51 1.02-2.93 2.14-4.24 3.35-2.82 2.59-5.12 5.46-5.75 8.32-.32 1.44-.17 2.81.43 4 .58 1.15 1.54 2.05 2.85 2.69-1.3.36-2.54.55-3.7.55-2.32 0-4.05-.72-5.1-2.14-.86-1.16-1.18-2.7-.94-4.43.24-1.74 1.01-3.66 2.3-5.64 2.9-4.4 8.28-9.05 15.7-13.3C31.4 3.34 41.7.7 49.2 6.89zm-44.02 33.6C7.28 40.13 9.7 41 12.25 41c4.18 0 8.74-1.77 12.76-4.85-3.27.44-6.33.48-8.8-.05-2.6-.56-4.38-1.77-5.07-3.53-1.11.48-2.1 1.03-2.98 1.63a15.7 15.7 0 0 0-2.99 2.28z" fill="#6DB33F"/></svg> Spring Boot</span>
         </div>
       </div>
       <p class="project-desc">
-        mCare is a secure, web-based loan management system that supports women entrepreneurs through microfinance solutions.
-        The platform streamlines loan applications, document verification, approval workflows, and repayment tracking through a responsive and user-centric interface.
+        mCare is a secure, web-based full stack loan management system supporting women entrepreneurs through microfinance solutions.
+        Built with a React.js SPA frontend and a Spring Boot microservices backend, it streamlines loan applications, document verification,
+        approval workflows, and repayment tracking — with JWT-secured APIs ensuring data privacy at every layer.
       </p>
-      <div class="contrib-title">Key Contributions</div>
+      <div class="contrib-title">Frontend Contributions</div>
       <div class="contrib-grid">
-        <div class="contrib-item">Developed responsive React.js frontend for loan application &amp; onboarding</div>
-        <div class="contrib-item">Built reusable UI components using Kendo UI and Material UI</div>
-        <div class="contrib-item">Implemented dynamic forms, dashboards, and data tables</div>
-        <div class="contrib-item">Integrated frontend with backend REST APIs for loan processing</div>
-        <div class="contrib-item">Handled JSON data structures for displaying application data</div>
-        <div class="contrib-item">Implemented client-side validation and error handling</div>
-        <div class="contrib-item">Ensured cross-browser responsive design across all devices</div>
-        <div class="contrib-item">Optimized rendering performance and reduced load times</div>
+        <div class="contrib-item">Responsive React.js SPA for loan application &amp; onboarding flows</div>
+        <div class="contrib-item">Built reusable component library using Kendo UI and Material UI</div>
+        <div class="contrib-item">Dynamic dashboards, data tables, and multi-step form wizards</div>
+        <div class="contrib-item">Redux state management for application-wide loan data</div>
+        <div class="contrib-item">Client-side validation, error handling, and UX feedback</div>
+        <div class="contrib-item">Cross-browser responsive design across all screen sizes</div>
+      </div>
+      <div class="contrib-title" style="margin-top:1rem;">Backend / Integration Contributions</div>
+      <div class="contrib-grid">
+        <div class="contrib-item">Integrated frontend with Spring Boot REST APIs via Axios</div>
+        <div class="contrib-item">Consumed JWT-secured endpoints for loan processing workflows</div>
+        <div class="contrib-item">Handled JSON data structures for loan application state</div>
+        <div class="contrib-item">Optimized API calls and reduced unnecessary re-renders</div>
+      </div>
+      <div style="margin-top:1.5rem;">
+        <div class="contrib-title">Tech Stack</div>
+        <div class="project-stack">
+          <span class="proj-tag">React.js</span>
+          <span class="proj-tag">JavaScript ES6+</span>
+          <span class="proj-tag">Redux</span>
+          <span class="proj-tag">Spring Boot</span>
+          <span class="proj-tag">REST APIs</span>
+          <span class="proj-tag">JWT</span>
+          <span class="proj-tag">Kendo UI</span>
+          <span class="proj-tag">Material UI</span>
+          <span class="proj-tag">Axios</span>
+          <span class="proj-tag">MySQL</span>
+          <span class="proj-tag">Git</span>
+          <span class="proj-tag">Agile</span>
+        </div>
       </div>
     </div>
   </div>
@@ -547,15 +842,18 @@ footer {
   <div class="container sec-pad">
     <div class="sec-tag">04. Experience</div>
     <h2 class="sec-title">Work History</h2>
-    <div class="exp-card">
-      <div class="exp-icon">&#128188;</div>
-      <div>
-        <div class="exp-company">VolkSoft Technologies</div>
-        <div class="exp-role">REACT DEVELOPER &middot; 2+ YEARS</div>
+    <div class="exp-timeline">
+      <div class="exp-card">
+        <div class="exp-header">
+          <div class="exp-company">VolkSoft Technologies</div>
+          <span class="exp-duration">2+ Years</span>
+        </div>
+        <div class="exp-role">FULL STACK DEVELOPER · REACT + SPRING BOOT</div>
         <div class="exp-desc">
-          Designing, developing, and maintaining scalable web applications using React.js, Next.js, and JavaScript (ES6+).
-          Building dynamic, responsive UIs and reusable components. Integrating RESTful APIs, 
-          optimizing builds with Webpack, conducting unit &amp; integration testing, and delivering stable production-ready apps in Agile environments.
+          Designing, developing, and maintaining scalable full stack web applications using React.js / Next.js on the frontend and Spring Boot microservices on the backend.
+          Architecting RESTful APIs with Spring MVC, securing them with Spring Security (JWT / OAuth2), and integrating with MySQL via Spring Data JPA.
+          On the frontend, building dynamic responsive UIs with Redux state management, reusable component libraries, and optimized Webpack builds.
+          Supporting SIT / UAT cycles, and delivering production-ready releases in Agile sprints.
         </div>
       </div>
     </div>
@@ -570,11 +868,23 @@ footer {
     <div class="ach-grid">
       <div class="ach-card">
         <div class="ach-num">01</div>
-        <div class="ach-text">Designed, developed, and deployed scalable React.js applications with seamless RESTful API integration, optimized state management using Redux, and secure authentication ensuring high performance and reliability.</div>
+        <div class="ach-title">Full Stack Delivery</div>
+        <div class="ach-text">Delivered end-to-end React + Spring Boot applications with JWT-secured REST APIs, Redux state management, and JPA-based data layers — ensuring high performance and reliability across production environments.</div>
       </div>
       <div class="ach-card">
         <div class="ach-num">02</div>
-        <div class="ach-text">Resolved critical UI defects, API integration issues, and environment challenges while supporting SIT, UAT, and production deployments to ensure application stability and a seamless user experience.</div>
+        <div class="ach-title">Microservices Architecture</div>
+        <div class="ach-text">Designed and developed modular Spring Boot microservices with clean separation of concerns — enabling independent deployability, horizontal scaling, and simplified maintenance across service boundaries.</div>
+      </div>
+      <div class="ach-card">
+        <div class="ach-num">03</div>
+        <div class="ach-title">Production Stability</div>
+        <div class="ach-text">Resolved critical UI defects, API integration failures, and environment-specific challenges during SIT, UAT, and production releases — maintaining zero downtime and consistent user experience under real-world load.</div>
+      </div>
+      <div class="ach-card">
+        <div class="ach-num">04</div>
+        <div class="ach-title">9.55 CGPA — Top Graduate</div>
+        <div class="ach-text">Graduated with a 9.55 CGPA from RGUKT Ongole, demonstrating strong analytical foundations that directly translate into clean architecture, algorithmic thinking, and systematic problem solving in full stack development.</div>
       </div>
     </div>
   </div>
@@ -589,12 +899,18 @@ footer {
       <div class="edu-card">
         <div class="edu-deg">B.Tech in Civil Engineering</div>
         <div class="edu-school">Rajiv Gandhi University of Knowledge Technologies, Ongole</div>
-        <div class="edu-meta"><span class="pill pill-blue">CGPA: 9.55</span><span class="pill pill-purple">Jun 2019 &ndash; May 2023</span></div>
+        <div class="edu-meta">
+          <span class="pill pill-gold">⭐ CGPA: 9.55</span>
+          <span class="pill pill-blue">Jun 2019 – May 2023</span>
+        </div>
       </div>
       <div class="edu-card">
         <div class="edu-deg">Pre University Course</div>
         <div class="edu-school">Rajiv Gandhi University of Knowledge Technologies, Ongole</div>
-        <div class="edu-meta"><span class="pill pill-blue">CGPA: 9.22</span><span class="pill pill-purple">Jul 2017 &ndash; Apr 2019</span></div>
+        <div class="edu-meta">
+          <span class="pill pill-blue">CGPA: 9.22</span>
+          <span class="pill pill-purple">Jul 2017 – Apr 2019</span>
+        </div>
       </div>
     </div>
   </div>
@@ -606,55 +922,45 @@ footer {
     <div class="sec-tag">07. Contact</div>
     <h2 class="sec-title">Let's Work Together</h2>
     <div class="contact-box">
+      <div class="contact-title">Open to Full Stack Roles</div>
       <p class="contact-desc">
-        I'm actively looking for new React Developer opportunities.<br/>
-        Whether you have a role, a project, or want to connect &mdash; I'd love to hear from you!
+        I'm actively seeking Full Stack Developer opportunities where I can contribute across the entire stack — React frontends, Spring Boot backends, microservices, and everything in between.<br/><br/>
+        If you have a role, a project, or simply want to connect — I'd love to hear from you!
       </p>
       <div class="contact-ctas">
-        <button class="btn btn-blue" onclick="openGmail()">&#9993; Send Email via Gmail</button>
+        <button class="btn btn-blue" onclick="openGmail()">✉ Send Email via Gmail</button>
         <a href="https://github.com/GeethaMatcha" target="_blank" rel="noopener" class="btn btn-dark">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
           View GitHub
         </a>
       </div>
       <div class="contact-links">
-        <button class="contact-link" onclick="handlePhone()" title="Tap to call (mobile) or copy number (desktop)">
-          &#128222; +91 9502441278
-        </button>
+        <button class="contact-link contact-link-teal" onclick="handlePhone()">📱 +91 9502441278</button>
       </div>
     </div>
   </div>
 </section>
 
-<div id="copy-toast">&#10003; Number copied to clipboard!</div>
+<div id="copy-toast">✓ Number copied to clipboard!</div>
 
 <footer>
-  <p>Designed &amp; Built by Matcha Geetha &middot; React Developer &middot; 2025</p>
+  <p>Designed &amp; Built by <span>Matcha Geetha</span> · Full Stack Developer (React + Spring Boot) · 2025</p>
 </footer>
 
 <script>
-  function toggleMenu() {
-    document.getElementById('mobile-menu').classList.toggle('open');
-  }
-  function closeMenu() {
-    document.getElementById('mobile-menu').classList.remove('open');
-  }
-  // Close menu when clicking outside
+  function toggleMenu() { document.getElementById('mobile-menu').classList.toggle('open'); }
+  function closeMenu() { document.getElementById('mobile-menu').classList.remove('open'); }
   document.addEventListener('click', function(e) {
     var menu = document.getElementById('mobile-menu');
     var toggle = document.querySelector('.nav-mobile-toggle');
-    if (!menu.contains(e.target) && !toggle.contains(e.target)) {
-      menu.classList.remove('open');
-    }
+    if (!menu.contains(e.target) && !toggle.contains(e.target)) menu.classList.remove('open');
   });
-
   function openGmail() {
     var e = 'geethamatchas', d = 'gmail.com';
-    var s = 'Job Opportunity - React Developer';
-    var b = 'Hi%20Geetha%2C%0A%0AI%20found%20your%20portfolio%20and%20would%20love%20to%20connect%20about%20an%20opportunity!';
+    var s = 'Full Stack Developer Opportunity - Matcha Geetha';
+    var b = 'Hi%20Geetha%2C%0A%0AI%20found%20your%20portfolio%20and%20would%20love%20to%20connect%20about%20a%20Full%20Stack%20Developer%20opportunity!';
     window.open('https://mail.google.com/mail/?view=cm&to=' + e + '@' + d + '&su=' + encodeURIComponent(s) + '&body=' + b, '_blank');
   }
-
   function handlePhone() {
     var number = '+919502441278';
     var isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
@@ -665,9 +971,7 @@ footer {
         var toast = document.getElementById('copy-toast');
         toast.style.display = 'block';
         setTimeout(function() { toast.style.display = 'none'; }, 2500);
-      }).catch(function() {
-        prompt('Copy this number:', number);
-      });
+      }).catch(function() { prompt('Copy this number:', number); });
     }
   }
 </script>
